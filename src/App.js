@@ -23,14 +23,13 @@ function App() {
   // ];
 
   //making api request to get the data inside the component 
-  function fetchMovieHandler(){
-      fetch('https://swapi.dev/api/films/').then((response)=>{
+  async function fetchMovieHandler(){
+    try{ 
+    const response = await fetch('https://swapi.dev/api/films/')
 
-      console.log(response)
+      const data = await response.json()
 
-      return response.json();
-      }).then(data=>{
-
+      
         const transformedMovies = data.results.map((movieData)=>{
           return {
             id: movieData.episode_id,
@@ -41,7 +40,9 @@ function App() {
         })
 
        setMovies(transformedMovies)
-      })
+      } catch(error){
+        console.log('handle the error in the  block',error)
+      }
   }
 
   return (
