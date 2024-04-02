@@ -6,29 +6,16 @@ import './App.css';
 function App() {
 
   const [movies, setMovies] = useState([])
-
-  // const dummyMovies = [
-  //   {
-  //     id: 1,
-  //     title: 'Some Dummy Movie',
-  //     openingText: 'This is the opening text of the movie',
-  //     releaseDate: '2021-05-18',
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Some Dummy Movie 2',
-  //     openingText: 'This is the second opening text of the movie',
-  //     releaseDate: '2021-05-19',
-  //   },
-  // ];
-
+  const [isLoading, setIsLoading] = useState(false)
+  
   //making api request to get the data inside the component 
   async function fetchMovieHandler(){
     try{ 
+      setIsLoading(true)
+
     const response = await fetch('https://swapi.dev/api/films/')
-
+    
       const data = await response.json()
-
       
         const transformedMovies = data.results.map((movieData)=>{
           return {
@@ -40,6 +27,7 @@ function App() {
         })
 
        setMovies(transformedMovies)
+       setIsLoading(false)
       } catch(error){
         console.log('handle the error in the  block',error)
       }
@@ -51,7 +39,7 @@ function App() {
         <button onClick={fetchMovieHandler}>Fetch Movies</button>
       </section>
       <section>
-        <MoviesList movies={movies} />
+        {isLoading ?(<h1 className="loader">data is loading...... </h1>):( <MoviesList movies={movies} />)}
       </section>
     </React.Fragment>
   );

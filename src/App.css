@@ -27,3 +27,23 @@ button:active {
   background-color: #460897;
   border-color: #460897;
 }
+
+h1 {
+  font-size: smaller;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  margin: 20px;
+  width: 120px;
+  height: 20px;
+  justify-content: center;
+  align-content: center;
+  background: 
+    linear-gradient(90deg, #0000 ,orange) left -50px top 0/50px 20px no-repeat 
+    lightblue;
+  animation: l2 1s infinite linear;
+}
+@keyframes l2 {
+  100% {background-position: right -50px top 0}
+}
