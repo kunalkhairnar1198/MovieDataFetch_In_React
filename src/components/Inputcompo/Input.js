@@ -11,12 +11,17 @@ const Input = (props) => {
         e.preventDefault()
 
         const enterObj ={
+            // id : Math.random().toString(),
             title : titleRef.current.value,
-            text : textRef.current.value,
-            date : dateRef.current.value,
+            openingText : textRef.current.value,
+            releaseDate : dateRef.current.value,
         }
         props.onEnteredDataReceive(enterObj)
         // console.log(enterObj)
+
+        titleRef.current.value = ''
+        textRef.current.value =''
+        dateRef.current.value=''
     }
 
   return (
@@ -25,7 +30,7 @@ const Input = (props) => {
         <label>Title</label>
         <input type='text' ref={titleRef}/>
         <label>Opening Text</label>
-        <input type='textarea' ref={textRef}/>
+        <textarea type='textarea' ref={textRef}/>
         <label>Release Date</label>
         <input type='date' ref={dateRef}/>
         <button style={{display:'flex', alignItems:'center'}}>Add Movie</button>

@@ -1,5 +1,5 @@
 .form {
-    margin-bottom: 10px;
+    margin: 1rem 0;
     padding-bottom: 20px;
 }
 
@@ -9,17 +9,28 @@
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 12px;
     box-sizing: border-box;
 }
+
+.form textarea {
+    display: block;
+    width: 100%;
+    height: 100px;
+    font: inherit;
+    padding: 0.2rem;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+}
+
 .form label {
     display: flex;
 }
 
-.form button {
+/* .form button {
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
+} */
