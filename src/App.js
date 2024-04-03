@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
+import Input from './components/Inputcompo/Input';
 
 function App() {
 
@@ -81,17 +82,18 @@ function App() {
     );
   }
 
+  const enteredDataUpdate =(enteredData)=>{
+    console.log(enteredData)
+  }
+
   return (
     <React.Fragment>
+          <Input onEnteredDataReceive ={enteredDataUpdate}/>
       <section>
         <button onClick={fetchMovieHandler}>Fetch Movies</button>
       </section>
       <section>
         {content}
-        {/* {!isLoading && movies.length > 0 && <MoviesList movies={movies} />}
-        {!isLoading && movies.length === 0 && !isError && <h1>Data is not found</h1>}
-        {isLoading && <p className='loader'></p>}
-        {!isLoading && isError && <p>{isError}</p>} */}
       </section>
     </React.Fragment>
   );
