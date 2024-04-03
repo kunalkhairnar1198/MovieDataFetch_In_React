@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -10,17 +10,10 @@ function App() {
   const [isError, setIsError] = useState(null)  
   const [retrying, setRetrying] = useState(false)
 
-  useEffect(()=>{
-    const id = setInterval(()=>{
-      if(!retrying){
-        fetchMovieHandler()
-      }
-    },5000)
-    return ()=>clearInterval(id)
-  },[retrying])
+  
 
   //making api request to get the data inside the component 
-   const fetchMovieHandler= async() =>{
+   const fetchMovieHandler= useCallback( async() =>{
 
     setIsLoading(true)
     setIsError(null)
@@ -52,8 +45,12 @@ function App() {
         setRetrying(true)
       }
       setIsLoading(false)
+  },[])
 
-  }
+  //when useEffect is used persistatly update api call when app starts
+  useEffect(()=>{
+    fetchMovieHandler(); 
+   },[fetchMovieHandler]);
 
   const cancelRetrying =()=>{
     setIsError(false)
